@@ -1,0 +1,12 @@
+import pandas as pd
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("customer_data.csv")
+X = df.drop('CustomerID', axis=1)
+
+model = KMeans(n_clusters=3)
+model.fit(X)
+
+new_customer = [float(x) for x in input("Enter shopping features: ").split()]
+segment = model.predict([new_customer])
+print(f"Assigned to Segment: {segment[0]}")
