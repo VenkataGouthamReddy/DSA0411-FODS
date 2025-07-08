@@ -1,0 +1,21 @@
+import numpy as np
+import pandas as pd
+from scipy.stats import norm
+
+data = pd.read_csv('rare_elements.csv')
+values = data.iloc[:, 0].dropna().values
+
+sample_size = int(input("Enter sample size: "))
+confidence_level = float(input("Enter confidence level (e.g., 0.95): "))
+precision = float(input("Enter desired precision (± value): "))
+
+sample = np.random.choice(values, sample_size, replace=False)
+sample_mean = np.mean(sample)
+sample_std = np.std(sample, ddof=1)
+
+z = norm.ppf(1 - (1 - confidence_level) / 2)
+margin_error = z * (sample_std / np.sqrt(sample_size))
+
+print(f"Mean = {sample_mean:.4f}")
+print(f"{int(confidence_level*100)}% CI = ({sample_mean - margin_error:.4f}, {sample_mean + margin_error:.4f})")
+print("Precision Goal:", "Met ✅" if margin_error <= precision else "Not Met ❌")
