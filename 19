@@ -1,0 +1,14 @@
+from scipy.stats import t
+
+drug = np.random.normal(loc=15, scale=5, size=50)
+placebo = np.random.normal(loc=8, scale=4, size=50)
+
+def ci(data):
+    mean = np.mean(data)
+    std = np.std(data, ddof=1)
+    n = len(data)
+    margin = t.ppf(0.975, n-1) * (std/np.sqrt(n))
+    return (mean - margin, mean + margin)
+
+print("Drug Group CI:", ci(drug))
+print("Placebo Group CI:", ci(placebo))
