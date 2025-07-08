@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor, export_text
+
+df = pd.read_csv("car_data.csv")  # Columns: Mileage, Age, BrandCode, EngineTypeCode, Price
+X = df.drop('Price', axis=1)
+y = df['Price']
+
+model = DecisionTreeRegressor()
+model.fit(X, y)
+
+new_input = [float(x) for x in input("Enter car features: ").split()]
+prediction = model.predict([new_input])
+print(f"Predicted Price: ₹{prediction[0]:,.2f}")
+
+tree_rules = export_text(model, feature_names=X.columns.tolist())
+print("\nDecision Path:\n", tree_rules)
