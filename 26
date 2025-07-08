@@ -1,0 +1,13 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("housing.csv")  # Columns: Area, Bedrooms, LocationEncoded, Price
+X = df.drop('Price', axis=1)
+y = df['Price']
+
+model = LinearRegression()
+model.fit(X, y)
+
+new_features = [float(x) for x in input("Enter area, bedrooms, location code: ").split()]
+pred = model.predict([new_features])
+print(f"Predicted Price: ₹{pred[0]:,.2f}")
