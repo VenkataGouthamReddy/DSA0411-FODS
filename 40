@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("stock_data.csv")  # columns: Date, Close
+
+mean = df['Close'].mean()
+std = df['Close'].std()
+
+print(f"Mean: {mean:.2f}, Std Dev: {std:.2f}")
+df.plot(x='Date', y='Close', title='Stock Price Trend')
+plt.ylabel("Closing Price")
+plt.show()
