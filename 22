@@ -1,0 +1,15 @@
+import pandas as pd
+from scipy.stats import norm
+import numpy as np
+
+df = pd.read_csv("customer_reviews.csv")
+ratings = df['Rating'].dropna().values
+sample_size = len(ratings)
+
+mean = np.mean(ratings)
+std = np.std(ratings, ddof=1)
+z = norm.ppf(0.975)  # 95% CI
+margin = z * std / np.sqrt(sample_size)
+
+print(f"Mean Rating = {mean:.2f}")
+print(f"95% CI = ({mean - margin:.2f}, {mean + margin:.2f})")
