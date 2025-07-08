@@ -1,0 +1,4 @@
+reviews = ["Great product", "Not good", "Amazing quality", "Not great", "Good value"]
+words = ' '.join(reviews).lower().split()
+freq = Counter(words)
+print(freq)
