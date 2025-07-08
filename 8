@@ -1,0 +1,7 @@
+product_sales = pd.DataFrame({
+    'Product': ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'X'],
+    'Quantity': [2, 4, 1, 3, 5, 2, 6]
+})
+
+top5 = product_sales.groupby('Product')['Quantity'].sum().sort_values(ascending=False).head(5)
+print(top5)
