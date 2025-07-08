@@ -1,0 +1,13 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("churn_data.csv")  # Columns: Minutes, Contract, ..., Churn
+X = df.drop('Churn', axis=1)
+y = df['Churn']
+
+model = LogisticRegression()
+model.fit(X, y)
+
+new_input = [float(x) for x in input("Enter customer features: ").split()]
+prediction = model.predict([new_input])
+print("Prediction:", "Will Churn 🚨" if prediction[0] == 1 else "Retained 😊")
