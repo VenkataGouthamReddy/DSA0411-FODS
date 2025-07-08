@@ -1,0 +1,9 @@
+from collections import Counter
+
+with open('sample_text.txt', 'r') as file:
+    text = file.read().lower().split()
+
+freq = Counter(text)
+print("Word Frequencies:")
+for word, count in freq.items():
+    print(f"{word}: {count}")
