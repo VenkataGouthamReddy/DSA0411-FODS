@@ -1,0 +1,13 @@
+from scipy.stats import ttest_ind
+
+design_A = np.random.normal(loc=0.15, scale=0.05, size=100)
+design_B = np.random.normal(loc=0.18, scale=0.04, size=100)
+
+t_stat, p_value = ttest_ind(design_A, design_B)
+print("T-statistic:", t_stat)
+print("P-value:", p_value)
+
+if p_value < 0.05:
+    print("Statistically significant difference found!")
+else:
+    print("No significant difference between designs.")
