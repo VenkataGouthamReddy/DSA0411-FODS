@@ -1,0 +1,14 @@
+import pandas as pd
+
+# Sample data
+data = {
+    'Customer_ID': [101, 102, 101, 103, 102],
+    'Order_Date': pd.to_datetime(['2025-07-01','2025-07-02','2025-07-03','2025-07-04','2025-07-05']),
+    'Product': ['A','B','A','C','B'],
+    'Quantity': [3, 1, 2, 5, 4]
+}
+df = pd.DataFrame(data)
+
+print(df.groupby('Customer_ID').size())
+print(df.groupby('Product')['Quantity'].mean())
+print("Earliest:", df['Order_Date'].min(), "| Latest:", df['Order_Date'].max())
