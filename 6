@@ -1,0 +1,11 @@
+prices = [40, 30, 20]
+quantities = [2, 3, 1]
+discount = 10  # in percent
+tax = 5        # in percent
+
+subtotal = sum(p*q for p, q in zip(prices, quantities))
+discount_amount = subtotal * (discount / 100)
+tax_amount = (subtotal - discount_amount) * (tax / 100)
+total = subtotal - discount_amount + tax_amount
+
+print("Total Cost:", round(total, 2))
