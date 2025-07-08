@@ -1,0 +1,19 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("customer_data.csv")  # includes features like PurchaseAmount, BrowsingTime, Age, etc.
+
+X = df.drop(['CustomerID'], axis=1)
+X_scaled = StandardScaler().fit_transform(X)
+
+kmeans = KMeans(n_clusters=4, random_state=42)
+df['Segment'] = kmeans.fit_predict(X_scaled)
+
+print(df.groupby('Segment').mean())
+plt.scatter(X_scaled[:, 0], X_scaled[:, 1], c=df['Segment'], cmap='viridis')
+plt.title("Customer Segments")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
