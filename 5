@@ -1,0 +1,7 @@
+fuel_efficiency = np.array([22, 28, 25, 30])
+
+avg_efficiency = np.mean(fuel_efficiency)
+improvement = ((fuel_efficiency[3] - fuel_efficiency[0]) / fuel_efficiency[0]) * 100
+
+print("Average MPG:", avg_efficiency)
+print("Improvement:", improvement, "%")
