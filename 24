@@ -1,0 +1,15 @@
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+
+df = pd.read_csv("patients.csv")  # Columns: Symptom1, Symptom2,..., Diagnosis
+X = df.drop('Diagnosis', axis=1)
+y = df['Diagnosis']
+
+k = int(input("Enter k value: "))
+new_input = [float(x) for x in input("Enter new patient features separated by space: ").split()]
+
+model = KNeighborsClassifier(n_neighbors=k)
+model.fit(X, y)
+
+prediction = model.predict([new_input])
+print("Prediction:", "Has condition ✅" if prediction[0] == 1 else "No condition ❌")
