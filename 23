@@ -1,0 +1,17 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import ttest_ind
+
+df = pd.read_csv("clinical_trial.csv")
+placebo = df[df['Group'] == 'Placebo']['BloodPressure']
+treatment = df[df['Group'] == 'Drug']['BloodPressure']
+
+t_stat, p_val = ttest_ind(placebo, treatment)
+
+print(f"T-Statistic = {t_stat:.4f}")
+print(f"P-Value = {p_val:.4f}")
+
+plt.boxplot([placebo, treatment], labels=['Placebo', 'Drug'])
+plt.title("Blood Pressure Comparison")
+plt.ylabel("BP Level")
+plt.show()
