@@ -1,0 +1,13 @@
+import pandas as pd
+
+df = pd.read_csv("temperature_data.csv")  # columns: City, Date, Temperature
+
+stats = df.groupby('City')['Temperature'].agg(['mean', 'std', 'max', 'min'])
+stats['Range'] = stats['max'] - stats['min']
+
+most_consistent = stats['std'].idxmin()
+highest_range = stats['Range'].idxmax()
+
+print("Mean & Std per City:\n", stats)
+print("City with Most Consistent Temp:", most_consistent)
+print("City with Highest Temp Range:", highest_range)
