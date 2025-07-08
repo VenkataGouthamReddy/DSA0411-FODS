@@ -1,0 +1,17 @@
+months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+temperature = [22, 24, 28, 30, 35, 38, 36, 34, 30, 28, 25, 23]
+rainfall = [100, 80, 60, 40, 30, 20, 25, 50, 70, 90, 110, 120]
+
+# Line Plot - Temperature
+plt.plot(months, temperature, marker='o', color='orange')
+plt.title('Monthly Temperature')
+plt.xlabel('Month')
+plt.ylabel('Temperature (°C)')
+plt.show()
+
+# Scatter Plot - Rainfall
+plt.scatter(months, rainfall, color='blue')
+plt.title('Monthly Rainfall')
+plt.xlabel('Month')
+plt.ylabel('Rainfall (mm)')
+plt.show()
