@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("student_scores.csv")  # columns: StudyTime, Score
+
+corr = df.corr().iloc[0, 1]
+print(f"Correlation = {corr:.2f}")
+
+sns.regplot(x='StudyTime', y='Score', data=df)
+plt.title("Study Time vs Exam Score")
+plt.show()
