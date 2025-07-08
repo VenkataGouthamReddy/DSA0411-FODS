@@ -1,0 +1,3 @@
+likes = [5, 10, 5, 15, 10, 5, 20, 15, 10]
+like_freq = pd.Series(likes).value_counts()
+print(like_freq)
