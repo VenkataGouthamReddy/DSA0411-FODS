@@ -1,0 +1,15 @@
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("retail_transactions.csv")
+X = df[['AmountSpent', 'VisitFrequency']]
+
+kmeans = KMeans(n_clusters=3)
+df['Segment'] = kmeans.fit_predict(X)
+
+plt.scatter(df['AmountSpent'], df['VisitFrequency'], c=df['Segment'], cmap='plasma')
+plt.title("Retail Customer Segments")
+plt.xlabel("Amount Spent")
+plt.ylabel("Visit Frequency")
+plt.show()
