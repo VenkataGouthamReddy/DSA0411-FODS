@@ -1,0 +1,5 @@
+import pandas as pd
+
+data = pd.DataFrame({'Age': [22, 25, 22, 30, 28, 25, 22]})
+freq = data['Age'].value_counts()
+print(freq)
